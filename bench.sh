@@ -157,7 +157,10 @@ cdnspeedtest () {
 	echo ""
 	echo " $(tput setaf 6)##CDN Speedtest$(tput sgr0)"
 	cachefly=$( wget -O /dev/null http://cachefly.cachefly.net/100mb.test 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' ); echo " CacheFly:  $cachefly"
+	cacheflyping=$( ping -c3 cachefly.cachefly.net | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $cacheflyping ms";
+	
 	internode=$( wget -O /dev/null http://speedcheck.cdn.on.net/100meg.test 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' ); echo " Internode: $internode"
+	pinghost=$( ping -c3 speedcheck.cdn.on.net | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
 	echo ""
 }
 northamerciaspeedtest () {
@@ -165,20 +168,35 @@ northamerciaspeedtest () {
 	echo " $(tput setaf 6)##North America Speedtest$(tput sgr0)"
 	nas1=$( wget -O /dev/null http://speedtest.dal01.softlayer.com/downloads/test100.zip 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " SoftLayer, Dallas, USA: $nas1"
+	pinghost=$( ping -c3 speedtest.dal01.softlayer.com | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+
 	nas2=$( wget -O /dev/null http://speedtest.choopa.net/100MBtest.bin 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " ReliableSite, Piscataway, USA: $nas2"
+	pinghost=$( ping -c3 speedtest.choopa.net | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	nas3=$( wget -O /dev/null http://bhs.proof.ovh.net/files/100Mio.dat 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " OVH, Beauharnois, Canada: $nas3"
+	pinghost=$( ping -c3 bhs.proof.ovh.net | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	nas4=$( wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test100.zip 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " Softlayer, Washington, USA: $nas4"
+	pinghost=$( ping -c3 speedtest.wdc01.softlayer.com | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	nas5=$( wget -O /dev/null http://speedtest.sjc01.softlayer.com/downloads/test100.zip 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " SoftLayer, San Jose, USA: $nas5"
+	pinghost=$( ping -c3 speedtest.sjc01.softlayer.com | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	nas6=$( wget -O /dev/null http://tx-us-ping.vultr.com/vultr.com.100MB.bin 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " Vultr, Dallas, USA: $nas6"
+	pinghost=$( ping -c3 tx-us-ping.vultr.com | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	nas7=$( wget -O /dev/null http://nj-us-ping.vultr.com/vultr.com.100MB.bin 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " Vultr, New Jersey, USA: $nas7"
+	pinghost=$( ping -c3 nj-us-ping.vultr.com | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	nas8=$( wget -O /dev/null http://wa-us-ping.vultr.com/vultr.com.100MB.bin 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " Vultr, Seattle, USA: $nas8"
+	pinghost=$( ping -c3 wa-us-ping.vultr.com | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
 	echo ""
 }
 europespeedtest () {
@@ -186,20 +204,36 @@ europespeedtest () {
 	echo " $(tput setaf 6)##Europe Speedtest$(tput sgr0)"
 	es1=$( wget -O /dev/null http://149.3.140.170/100.log 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " RedStation, Gosport, UK: $es1"
+	pinghost=$( ping -c3 149.3.140.170 | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	es2=$( wget -O /dev/null http://se.edis.at/100MB.test 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " EDIS, Stockholm, Sweden: $es2"
+	pinghost=$( ping -c3 se.edis.at | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	es3=$( wget -O /dev/null http://rbx.proof.ovh.net/files/100Mio.dat 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " OVH, Roubaix, France: $es3"
+	pinghost=$( ping -c3 rbx.proof.ovh.net | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	es5=$( wget -O /dev/null http://mirrors.prometeus.net/test/test100.bin 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " Prometeus, Milan, Italy: $es5"
+	pinghost=$( ping -c3 mirrors.prometeus.net | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	es6=$( wget -O /dev/null http://mirror.de.leaseweb.net/speedtest/100mb.bin 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " LeaseWeb, Frankfurt, Germany: $es6"
+	pinghost=$( ping -c3 mirror.de.leaseweb.net | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	es7=$( wget -O /dev/null http://mirror.i3d.net/100mb.bin 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " Interactive3D, Amsterdam, NL: $es7"
+	pinghost=$( ping -c3 mirror.i3d.net | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	es8=$( wget -O /dev/null http://lon-gb-ping.vultr.com/vultr.com.100MB.bin 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " Vultr, London, UK: $es8"
+	pinghost=$( ping -c3 lon-gb-ping.vultr.com | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	es9=$( wget -O /dev/null http://ams-nl-ping.vultr.com/vultr.com.100MB.bin 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " Vultr, Amsterdam, NL: $es9"
+	pinghost=$( ping -c3 ams-nl-ping.vultr.com | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	echo ""
 }
 asiaspeedtest () {
@@ -207,12 +241,20 @@ asiaspeedtest () {
 	echo " $(tput setaf 6)##Asia Speedtest$(tput sgr0)"
 	as1=$( wget -O /dev/null http://speedtest.sng01.softlayer.com/downloads/test100.zip 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " SoftLayer, Singapore, Singapore $as1"
+	pinghost=$( ping -c3 speedtest.sng01.softlayer.com | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	as2=$( wget -O /dev/null http://speedtest.singapore.linode.com/100MB-singapore.bin 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " Linode, Singapore, Singapore $as2"
+	pinghost=$( ping -c3 speedtest.singapore.linode.com | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	as3=$( wget -O /dev/null http://speedtest.tokyo.linode.com/100MB-tokyo.bin 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " Linode, Tokyo, Japan: $as3"
+	pinghost=$( ping -c3 speedtest.tokyo.linode.com | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	as4=$( wget -O /dev/null http://hnd-jp-ping.vultr.com/vultr.com.100MB.bin 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' )
 	echo " Vultr, Tokyo, Japan: $as4"
+	pinghost=$( ping -c3 hnd-jp-ping.vultr.com | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
+	
 	echo ""
 }
 iotest () {
