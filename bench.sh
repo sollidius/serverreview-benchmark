@@ -4,13 +4,10 @@ about () {
 	echo "  ========================================================= "
 	echo "  \             Serverreview Benchmark Script             / "
 	echo "  \       Basic system info, I/O test and speedtest       / "
-	echo "  \                V 2.2.3  (09 Apr 2016)                   / "
+	echo "  \                V 3.0.0  (20 05 2016)                  / "
 	echo "  \             Created by Sayem Chowdhury                / "
+	echo "  \                Edited by Sollidius                    / "
 	echo "  ========================================================= "
-	echo ""
-	echo "  This script is based on bench.sh by camarg from akamaras.com"
-	echo "  Later it was modified by dmmcintyre3 on FreeVPS.us"
-	echo "  Thanks to Hidden_Refuge for the update of this script"
 	echo ""
 }
 prms () {
