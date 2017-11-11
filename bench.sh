@@ -155,9 +155,6 @@ cdnspeedtest () {
 	echo " $(tput setaf 6)##CDN Speedtest$(tput sgr0)"
 	cachefly=$( wget -O /dev/null http://cachefly.cachefly.net/100mb.test 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' ); echo " CacheFly:  $cachefly"
 	cacheflyping=$( ping -c3 cachefly.cachefly.net | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $cacheflyping ms";
-	
-	internode=$( wget -O /dev/null http://speedcheck.cdn.on.net/100meg.test 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}' ); echo " Internode: $internode"
-	pinghost=$( ping -c3 speedcheck.cdn.on.net | grep 'rtt' | cut -d"/" -f5 ); echo " Latency: $pinghost ms";
 	echo ""
 }
 northamerciaspeedtest () {
